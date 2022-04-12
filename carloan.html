@@ -330,7 +330,13 @@
         <div class="footer-links">
             <br>
             <ul>
-</ul>
+                <li><a href="https://www.internetbrands.com/ibterms/" rel="nofollow" target="blank">Terms of Use</a></li>
+                <li><a href="https://www.internetbrands.com/privacy/privacy-main.html" rel="nofollow" target="blank">&nbsp;Privacy Policy</a></li>
+                <li><a href="https://www.internetbrands.com/ibterms/supplementalcarrelatedterms/" rel="nofollow" target="blank">&nbsp;Supplemental Terms</a></li>
+                <li><a href="https://www.internetbrands.com/privacy/cookie-policy.html" rel="nofollow" target="blank">Cookie Policy</a></li>
+                <li><a href="https://www.internetbrands.com/privacy/privacy-contact-form.php" rel="nofollow" target="blank">&nbsp;Do Not Sell My Personal Information</a></li>
+                <li><a data-action="url" data-params="false" href="mailto:support@carloanagent.com" target="_self"><span style="background-color: rgba(255, 255, 255, 0);"><span style="background-color: rgba(255, 255, 255, 0);">Contact Us</span></span></a></li>
+            </ul>
         </div>
         <br>
         <br>
@@ -339,4 +345,91 @@
 
 
 
-</body></html>
+<script type="text/javascript">
+
+  
+
+
+
+    function submitForm(){
+    //   fbq('track', 'Lead');
+
+      let form = document.querySelector('form#save-contact');
+      let email = form.querySelector('input[name=email]');
+      let token = form.querySelector('input[name=campaign_token]');
+      let thankyou = form.querySelector('input[name=thankyou_url]');
+      let start_day = form.querySelector('input[name=start_day]');
+      
+      let formData = new FormData();
+      formData.append('email', email.value);
+      formData.append('campaign_token', token.value);
+      formData.append('thankyou_url', thankyou.value);
+      formData.append('start_day', start_day.value);
+    
+      
+      if(email.validity.valid){
+            $.ajax({
+            url: "save-contact.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData : false,
+            success: function(data)
+            {
+            let trackedRedirect = document.querySelector('a#trackedRedirect');
+            window.location.href = trackedRedirect.getAttribute('href');
+
+            },
+            error: function() 
+            {
+                $('#error-message').html("Network Issue. Try Again");
+            }
+        })
+      }
+ 
+    }
+
+
+    $(document).ready(function(){
+
+$( "#lp-pom-button-160" ).click(function() {
+  $('#lp-pom-box-173').addClass('active');
+  $('#lp-pom-box-173').removeClass('hidden');
+});
+
+ $( "#lp-pom-button-159" ).click(function() {
+  $('#lp-pom-box-173').addClass('active');
+  $('#lp-pom-box-173').removeClass('hidden');
+});
+
+$( "#lp-pom-button-177" ).click(function() {
+  $('#lp-pom-box-180').addClass('active');
+  $('#lp-pom-box-180').removeClass('hidden');
+});
+
+$( "#lp-pom-button-178" ).click(function() {
+  $('#lp-pom-box-180').addClass('active');
+  $('#lp-pom-box-180').removeClass('hidden');
+});
+
+let anchor = document.getElementById('trackedRedirect');
+let button = document.querySelector('#submit');
+button.disabled = true;
+
+let attObs = new MutationObserver(() => {
+    let thankyou = document.querySelector('form input[name=thankyou_url]');
+    thankyou.setAttribute('value', anchor.getAttribute('href'));
+    button.disabled = false;
+});
+
+attObs.observe(anchor, {
+    attributes: true
+});
+
+});
+
+$('#save-contact').submit((e) => e.preventDefault());
+</script>
+
+
+<script type="text/javascript" src="./carloan_files/track.js.descarga"></script></body></html>
